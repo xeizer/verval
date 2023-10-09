@@ -35,7 +35,7 @@
                             {{ $user->name }}
                             <div class="alert alert-primary" role="alert">
                                 <strong>Apakah benar ini informasi Anda ?</strong>
-                                <a href="{{ route('biodata') }}" class="btn btn-primary">YA</a>
+                                <a href="{{ route('allinone') }}" class="btn btn-primary">YA</a>
                                 <a href="/" class="btn btn-danger">TIDAK</a>
                             </div>
 

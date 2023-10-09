@@ -21,6 +21,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/77f96972f5.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --prm-color: #0381ff;
@@ -81,6 +82,24 @@
         #progress::-webkit-progress-bar {
             background-color: var(--prm-gray);
 
+        }
+
+        .float {
+            z-index: 99;
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 83%;
+            right: 40px;
+            background-color: #0C9;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 2px 2px 3px #999;
+        }
+
+        .my-float {
+            margin-top: 16px;
         }
     </style>
 
@@ -146,6 +165,7 @@
         </nav>
 
         <main class="py-4">
+
             {{ $slot }}
         </main>
     </div>

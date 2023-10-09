@@ -14,7 +14,8 @@
                             </div>
                         @endif
 
-                        <a href="/upload" class="btn btn-primary">Upload Data</a>
+                        <a href="/upload" class="btn btn-primary">Upload Siswa</a>
+                        <a href="/uploadkotkeckel" class="btn btn-primary">Upload KotKecKel</a>
                         <a href="/upload" class="btn btn-primary">Progress</a>
                     </div>
                 </div>

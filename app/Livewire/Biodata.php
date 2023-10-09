@@ -44,7 +44,6 @@ class Biodata extends Component
         $simpanasal = Siswa::where('user_id', $this->user->id)->firstOrFail();
         $simpanasal->asalsmp = $this->smp;
         $simpanasal->save();
-        $this->sudahSimpan = true;
         $this->alert('success', 'BERHASIL!', [
             'position' => 'center',
             'toast' => false,

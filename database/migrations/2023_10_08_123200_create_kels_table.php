@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kels', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('kec_id')->unsigned();
+            $table->string('nama');
             $table->timestamps();
             $table->foreign('kec_id')->references('id')->on('kecs')->onDelete('cascade');
         });

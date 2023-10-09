@@ -6,19 +6,19 @@
                 <div class="row">
 
                     <div class="col">
-                        <button href="{{ route('biodata') }}" class="p-1 w-100 btn btn-primary">Bio</button>
+                        <a wire:navigate href="{{ route('biodata') }}" class="p-1 w-100 btn btn-secondary">Bio</a>
                     </div>
                     <div class="col">
-                        <button href="" class="p-1 w-100 btn btn-outline-primary">Alamat</button>
+                        <a wire:navigate href="{{ route('alamat') }}" class="p-1 w-100 btn btn-outline-primary">Alamat</a>
                     </div>
                     <div class="col">
-                        <button href="" class="p-1 w-100 btn btn-outline-primary">Ayah</button>
+                        <a wire:navigate href="" class="p-1 w-100 btn btn-outline-primary">Ayah</a>
                     </div>
                     <div class="col">
-                        <button href="" class="p-1 w-100 btn btn-outline-primary">Ibu</button>
+                        <a wire:navigate href="" class="p-1 w-100 btn btn-outline-primary">Ibu</a>
                     </div>
                     <div class="col">
-                        <button href="" class="p-1 w-100 btn btn-outline-primary">Wali</button>
+                        <a wire:navigate href="" class="p-1 w-100 btn btn-outline-primary">Wali</a>
                     </div>
 
                 </div>
@@ -90,7 +90,8 @@
                                 </div>
                                 @if ($status >= 1)
                                     <div class="col">
-                                        <a class="btn btn-warning w-100" value="SIMPAN">Selanjutnya</a>
+                                        <a href="{{ route('alamat') }}" class="btn btn-warning w-100"
+                                            value="SIMPAN">Selanjutnya</a>
                                     </div>
                                 @endif
                             </div>
