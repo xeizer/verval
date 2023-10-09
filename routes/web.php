@@ -33,3 +33,4 @@ Route::get('/uploadkotkeckel', Uploadkotkeckel::class)->middleware(['auth', 'rol
 Route::get('/biodata', Biodata::class)->name('biodata');
 Route::get('/alamat', Alamat::class)->name('alamat');
 Route::get('/pengecekan', Semua::class)->name('allinone');
+Route::get('/ktp/{nisn}', [CekController::class, 'verval']);

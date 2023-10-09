@@ -9,6 +9,13 @@ use App\Models\User;
 
 class CekController extends Controller
 {
+    public function verval($nisn)
+    {
+        $data = Siswa::where('nisn', $nisn)->firstOrFail();
+        return view('verval', [
+            'user' => User::findOrFail($data->user_id)
+        ]);
+    }
     public function cekNisn(Request $req)
     {
         $this->validate($req, [

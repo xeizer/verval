@@ -116,6 +116,9 @@
                                 <div class="form-group">
                                     <label for="no_hp">No. HP</label>
                                     <input type="text" class="form-control" id="no_hp" wire:model="tlp">
+                                    @error('tlp')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="asalsmp">Asal SMP</label>
@@ -182,10 +185,120 @@
                                     <div class="col">
                                         <input type="submit" class="btn btn-primary w-100" value="SIMPAN" />
                                     </div>
+                                    @if ($status >= 2)
+                                        <div class="col">
+                                            <button type="button" wire:click="pilih('ayah')"
+                                                class="btn btn-warning w-100">Selanjutnya</button>
+                                        </div>
+                                    @endif
                                 </div>
                             </form>
+                        @elseif($pilihan == 'ayah')
+                            <form wire:submit="simpanAyah">
+                                <div class="form-group">
+                                    <label for="nama_ayah">Nama Ayah</label>
+                                    <input type="text" class="form-control" id="ayahnama" required
+                                        wire:model="ayahnama">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pekerjaan_ayah">Pekerjaan Ayah</label>
+                                    <input type="text" class="form-control" id="ayahkerja" required
+                                        wire:model="ayahkerja">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hp_ayah">Nomor HP Ayah</label>
+                                    <input type="text" class="form-control" id="ayahhp" required
+                                        wire:model="ayahhp">
+                                    @error('ayahhp')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <input type="submit" class="btn btn-primary w-100" value="SIMPAN" />
+                                    </div>
+                                    @if ($status >= 3)
+                                        <div class="col">
+                                            <button type="button" wire:click="pilih('ibu')"
+                                                class="btn btn-warning w-100">Selanjutnya</button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </form>
+                        @elseif($pilihan == 'ibu')
+                            <form wire:submit="simpanIbu">
+                                <div class="form-group">
+                                    <label for="nama_ayah">Nama Ibu</label>
+                                    <input type="text" class="form-control" id="ibunama" required
+                                        wire:model="ibunama">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pekerjaan_ibu">Pekerjaan Ibu</label>
+                                    <input type="text" class="form-control" id="ibukerja" required
+                                        wire:model="ibukerja">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hp_ibu">Nomor HP Ibu</label>
+                                    <input type="text" class="form-control" id="ibuhp" required
+                                        wire:model="ibuhp">
+                                    @error('ibuhp')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <input type="submit" class="btn btn-primary w-100" value="SIMPAN" />
+                                    </div>
+                                    @if ($status >= 4)
+                                        <div class="col">
+                                            <button type="button" wire:click="pilih('wali')"
+                                                class="btn btn-warning w-100">Selanjutnya</button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </form>
+                        @elseif($pilihan == 'wali')
+                            <form wire:submit="simpanWali">
+                                <div class="form-group">
+                                    <label for="nama_wali">Nama Wali</label>
+                                    <input type="text" class="form-control" id="walinama" required
+                                        wire:model="walinama">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pekerjaan_wali">Alamat Wali</label>
+                                    <textarea class="form-control" id="walikerja" required wire:model="alamatwali"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hp_wali">Nomor HP Wali</label>
+                                    <input type="text" class="form-control" id="walihp" required
+                                        wire:model="walihp">
+                                    @error('walihp')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <input type="submit" class="btn btn-primary w-100" value="SIMPAN" />
+                                    </div>
+                                    @if ($status >= 5)
+                                        <div class="col">
+                                            <button type="button" wire:click="pilih('selesai')"
+                                                class="btn btn-warning w-100">Selanjutnya</button>
+                                        </div>
+                                    @endif
+                                </div>
+                            </form>
+                        @elseif($pilihan == 'selesai')
+                            <div class="alert alert-success" role="alert">
+                                <strong>SELESAI</strong> Anda sudah menyelesaikan Perekaman Data
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                <strong>Informasi</strong> Anda Anda masih dapat mengubah data
+                            </div>
+                            <div class="text-center">
+                                {{ QrCode::size(200)->generate('https://verval.smkn7ptk.sch.id/ktp/' . $user->siswa->nisn) }}
+                            </div>
                         @endif
-
                     </div>
                 </div>
             </div>

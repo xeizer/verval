@@ -62,4 +62,8 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasOne(Siswa::class);
     }
+    public function orangtua()
+    {
+        return $this->hasOne(Orangtua::class);
+    }
 }
