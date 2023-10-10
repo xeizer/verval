@@ -162,8 +162,8 @@
                                 @if ($kota)
                                     <div class="form-group">
                                         <label for="kecamatan">Kecamatan</label>
-                                        <select class="form-control" id="kecamatan" required
-                                            wire:model.live="kec" wire:loading.attr='disabled'>
+                                        <select class="form-control" id="kecamatan" required wire:model.live="kec"
+                                            wire:loading.attr='disabled'>
                                             @foreach ($listkec as $kecamatan)
                                                 <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama }}</option>
                                             @endforeach
@@ -232,13 +232,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="pekerjaan_ibu">Pekerjaan Ibu</label>
-                                    <input type="text" class="form-control" id="ibukerja" required
-                                        wire:model="ibukerja">
+                                    <input type="text" class="form-control" id="ibukerja" wire:model="ibukerja">
                                 </div>
                                 <div class="form-group">
                                     <label for="hp_ibu">Nomor HP Ibu</label>
-                                    <input type="text" class="form-control" id="ibuhp" required
-                                        wire:model="ibuhp">
+                                    <input type="text" class="form-control" id="ibuhp" wire:model="ibuhp">
                                     @error('ibuhp')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -259,17 +257,15 @@
                             <form wire:submit="simpanWali">
                                 <div class="form-group">
                                     <label for="nama_wali">Nama Wali</label>
-                                    <input type="text" class="form-control" id="walinama" required
-                                        wire:model="walinama">
+                                    <input type="text" class="form-control" id="walinama" wire:model="walinama">
                                 </div>
                                 <div class="form-group">
                                     <label for="pekerjaan_wali">Alamat Wali</label>
-                                    <textarea class="form-control" id="walikerja" required wire:model="alamatwali"></textarea>
+                                    <textarea class="form-control" id="walikerja" wire:model="alamatwali"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="hp_wali">Nomor HP Wali</label>
-                                    <input type="text" class="form-control" id="walihp" required
-                                        wire:model="walihp">
+                                    <input type="text" class="form-control" id="walihp" wire:model="walihp">
                                     @error('walihp')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
