@@ -11,6 +11,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Siswa;
 use Livewire\Attributes\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class Semua extends Component
 {
@@ -18,10 +19,7 @@ class Semua extends Component
     public $user;
     public $email;
     public $name;
-
-    #[Rule(['numeric'], message: ['numeric' => 'No HP harus Angka'])]
     public $tlp, $ayahhp, $ibuhp, $walihp;
-
     public $nik;
     public $jkel;
     public $agama;
@@ -33,8 +31,6 @@ class Semua extends Component
     public $kota;
     public $listkota, $listkec, $listkel;
     public $kec;
-
-    #[Rule(['required'], message: ['required' => 'Lengkapi Alamat'])]
     public $kel;
     public $smp;
     public $ayahnama, $ayahkerja;
@@ -48,7 +44,20 @@ class Semua extends Component
     }
     public function simpanAlamat()
     {
-        $this->validate();
+        $data = [
+            'kel' => $this->kel,
+        ];
+        $rules = [
+            'kel' => 'required',
+        ];
+        $validator = Validator::make($data, $rules, [
+            'kel.numeric' => 'Lengkapi Kelurahan',
+        ]);
+        if ($validator->fails()) {
+            foreach ($validator->messages()->getMessages() as $va) {
+                $this->alert('warning', $va[0]);
+            }
+        }
         $simpan = $this->user;
         $simpan->alamat = $this->alamat;
         $simpan->prov = 'KALIMANTAN BARAT';
@@ -68,7 +77,21 @@ class Semua extends Component
     }
     public function simpan()
     {
-        $this->validate();
+        $data = [
+            'tlp' => $this->tlp,
+        ];
+        $rules = [
+            'tlp' => 'numeric',
+        ];
+        $validator = Validator::make($data, $rules, [
+            'tlp.numeric' => 'No HP harus berupa angka',
+        ]);
+        if ($validator->fails()) {
+            foreach ($validator->messages()->getMessages() as $va) {
+                $this->alert('warning', $va[0]);
+            }
+        }
+        $validator->validate();
         $simpan = $this->user;
         $simpan->name = $this->name;
         $simpan->tlp = $this->tlp;
@@ -84,6 +107,9 @@ class Semua extends Component
         $simpanasal = Siswa::where('user_id', $this->user->id)->firstOrFail();
         $simpanasal->asalsmp = $this->smp;
         $simpanasal->save();
+        $this->reset(['name', 'tlp', 'nik', 'jkel', 'agama', 'tempatlahir', 'tgllahir']);
+        $this->resetErrorBag();
+        $this->resetValidation();
         $this->alert('success', 'BERHASIL!', [
             'position' => 'center',
             'toast' => false,
@@ -102,7 +128,19 @@ class Semua extends Component
     }
     public function simpanAyah()
     {
-        $this->validate();
+        $data = [
+            'ayahhp' => $this->ayahhp,
+        ];
+        $rules = [
+            'ayahhp' => 'numeric',
+        ];
+        $validator = Validator::make($data, $rules, [
+            'ayahhp.numeric' => 'No HP harus berupa angka',
+        ]);
+        if ($validator->fails()) {
+            $this->alert('warning', 'Terdapat Kesalahan, Cek inputan Anda');
+        }
+        $validator->validate();
         $simpan = Orangtua::where('user_id', $this->user->id)->firstOrFail();
         $simpan->nama_ayah = $this->ayahnama;
         $simpan->pekerjaan_ayah = $this->ayahkerja;
@@ -113,6 +151,9 @@ class Semua extends Component
             $gantistatus->status = 3;
             $gantistatus->save();
         }
+        $this->reset(['ayahnama', 'ayahkerja', 'ayahhp']);
+        $this->resetErrorBag();
+        $this->resetValidation();
         $this->alert('success', 'BERHASIL!', [
             'position' => 'center',
             'toast' => false,
@@ -122,7 +163,19 @@ class Semua extends Component
     }
     public function simpanIbu()
     {
-        $this->validate();
+        $data = [
+            'ibuhp' => $this->ibuhp,
+        ];
+        $rules = [
+            'ibuhp' => 'numeric',
+        ];
+        $validator = Validator::make($data, $rules, [
+            'ibuhp.numeric' => 'No HP harus berupa angka',
+        ]);
+        if ($validator->fails()) {
+            $this->alert('warning', 'Terdapat Kesalahan, Cek inputan Anda');
+        }
+        $validator->validate();
         $simpan = Orangtua::where('user_id', $this->user->id)->firstOrFail();
         $simpan->nama_ibu = $this->ibunama;
         $simpan->pekerjaan_ibu = $this->ibukerja;
@@ -133,6 +186,9 @@ class Semua extends Component
             $gantistatus->status = 4;
             $gantistatus->save();
         }
+        $this->reset(['ibunama', 'ibukerja', 'ibuhp']);
+        $this->resetErrorBag();
+        $this->resetValidation();
         $this->alert('success', 'BERHASIL!', [
             'position' => 'center',
             'toast' => false,
@@ -142,7 +198,19 @@ class Semua extends Component
     }
     public function simpanWali()
     {
-        $this->validate();
+        $data = [
+            'walihp' => $this->walihp,
+        ];
+        $rules = [
+            'walihp' => 'numeric',
+        ];
+        $validator = Validator::make($data, $rules, [
+            'walihp.numeric' => 'No HP harus berupa angka',
+        ]);
+        if ($validator->fails()) {
+            $this->alert('warning', 'Terdapat Kesalahan, Cek inputan Anda');
+        }
+        $validator->validate();
         $simpan = Orangtua::where('user_id', $this->user->id)->firstOrFail();
         $simpan->nama_wali = $this->walinama;
         $simpan->alamat_wali = $this->alamatwali;
@@ -153,6 +221,9 @@ class Semua extends Component
             $gantistatus->status = 5;
             $gantistatus->save();
         }
+        $this->reset(['walinama', 'alamatwali', 'walihp']);
+        $this->resetErrorBag();
+        $this->resetValidation();
         $this->alert('success', 'BERHASIL!', [
             'position' => 'center',
             'toast' => false,

@@ -197,18 +197,16 @@
                             <form wire:submit="simpanAyah">
                                 <div class="form-group">
                                     <label for="nama_ayah">Nama Ayah</label>
-                                    <input type="text" class="form-control" id="ayahnama" required
-                                        wire:model="ayahnama">
+                                    <input type="text" class="form-control" id="ayahnama" wire:model="ayahnama">
                                 </div>
                                 <div class="form-group">
                                     <label for="pekerjaan_ayah">Pekerjaan Ayah</label>
-                                    <input type="text" class="form-control" id="ayahkerja" required
+                                    <input type="text" class="form-control" id="ayahkerja"
                                         wire:model="ayahkerja">
                                 </div>
                                 <div class="form-group">
                                     <label for="hp_ayah">Nomor HP Ayah</label>
-                                    <input type="text" class="form-control" id="ayahhp" required
-                                        wire:model="ayahhp">
+                                    <input type="text" class="form-control" id="ayahhp" wire:model="ayahhp">
                                     @error('ayahhp')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
